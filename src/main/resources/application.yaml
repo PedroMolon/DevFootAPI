@@ -1,3 +1,21 @@
 spring:
   application:
     name: DevFootAPI
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/devfoot
+    username: postgres
+    password: '@MolonPedro0110'
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
