@@ -24,6 +24,7 @@ public class Club {
     private String name;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date founded;
 
     @Column(name = "url_img")
