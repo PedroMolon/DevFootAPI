@@ -4,9 +4,9 @@ import com.pedromolon.DevFootAPI.dto.request.StadiumRequest;
 import com.pedromolon.DevFootAPI.dto.response.StadiumResponse;
 import com.pedromolon.DevFootAPI.mapper.StadiumMapper;
 import com.pedromolon.DevFootAPI.repository.StadiumRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class StadiumService {
@@ -19,11 +19,9 @@ public class StadiumService {
         this.stadiumMapper = stadiumMapper;
     }
 
-    public List<StadiumResponse> findAll() {
-        return stadiumRepository.findAll()
-                .stream()
-                .map(stadiumMapper::toResponse)
-                .toList();
+    public Page<StadiumResponse> findAll(Pageable pageable) {
+        return stadiumRepository.findAll(pageable)
+                .map(stadiumMapper::toResponse);
     }
 
     public StadiumResponse findById(Long id) {

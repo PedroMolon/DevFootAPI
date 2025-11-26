@@ -3,11 +3,11 @@ package com.pedromolon.DevFootAPI.controller;
 import com.pedromolon.DevFootAPI.dto.request.StadiumRequest;
 import com.pedromolon.DevFootAPI.dto.response.StadiumResponse;
 import com.pedromolon.DevFootAPI.service.StadiumService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/stadiums")
@@ -20,8 +20,10 @@ public class StadiumController {
     }
 
     @GetMapping
-    public ResponseEntity<List<StadiumResponse>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(stadiumService.findAll());
+    public ResponseEntity<Page<StadiumResponse>> findAll(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                stadiumService.findAll(pageable)
+        );
     }
 
     @GetMapping("/{id}")
